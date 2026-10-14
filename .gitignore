@@ -1,0 +1,8 @@
+build/
+app/build/
+.gradle/
+*.keystore
+*.jks
+*.pem
+MOT-DE-PASSE-CLE.txt
+local.properties

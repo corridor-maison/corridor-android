@@ -1,0 +1,28 @@
+name: Construire le paquet Android (non signé)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Construire (bundle et APK, non signés)
+        run: |
+          chmod +x gradlew
+          ./gradlew bundleRelease assembleRelease --no-daemon --console=plain
+          ls -la app/build/outputs/bundle/release app/build/outputs/apk/release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: corridor-android-non-signe
+          path: |
+            app/build/outputs/bundle/release/app-release.aab
+            app/build/outputs/apk/release/app-release-unsigned.apk
+          if-no-files-found: error
