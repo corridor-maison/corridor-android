@@ -55,7 +55,7 @@ android {
     namespace "io.github.corridormaison.app"
     defaultConfig {
         applicationId "io.github.corridormaison.app"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 36
         versionCode 1
         versionName "0.3.2"
